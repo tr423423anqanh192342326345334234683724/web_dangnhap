@@ -1,0 +1,8 @@
+<div>
+  <h2>Đăng ký</h2>
+  <input type="text" placeholder="Username">
+  <input [type]="showPassword ? 'text' : 'password'" placeholder="Password">
+  <input [type]="showPassword ? 'text' : 'password'" placeholder="Confirm Password">
+  <input type="checkbox" (click)="kiemtra()"><label>Hiện/Ẩn mật khẩu</label>
+  <button (click)="dangky()">Đăng ký</button>
+</div>
