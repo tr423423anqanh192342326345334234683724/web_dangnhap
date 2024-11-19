@@ -49,7 +49,7 @@ public class KhachhangService {
             khachhangRepository.save(kh);
         }
     }
-    public Map<String, Object> dangnhap(String taikhoan, String matkhau) {
+    public Map<String, Object> kiemtradangnhap(String taikhoan, String matkhau) {
         Map<String, Object> response = new HashMap<>();
         khachhang kh = khachhangRepository.findByTaikhoanAndMatkhau(taikhoan, matkhau);
         if (kh != null) {

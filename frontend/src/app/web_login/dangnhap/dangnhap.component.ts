@@ -22,7 +22,7 @@ export class DangnhapComponent implements OnInit {
       taikhoan: this.taikhoan,
       matkhau: this.matkhau
     });
-    this.http.post('http://localhost:8080/api/khachhangs/dangnhap', {
+    this.http.post('http://localhost:8080/api/khachhangs/kiemtradangnhap', {
       taikhoan: this.taikhoan,
       matkhau: this.matkhau
     }).subscribe((response: any) => {

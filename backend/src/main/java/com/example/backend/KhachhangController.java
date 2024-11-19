@@ -41,13 +41,9 @@ public class KhachhangController {
         khachhangService.activateKhachhang(id);
     }
 
-    @PostMapping("/dangnhap")
-    public ResponseEntity<Map<String, Object>> dangnhap(@RequestBody khachhang khachhang) {
-        Map<String, Object> response = khachhangService.dangnhap(khachhang.getTaikhoan(), khachhang.getMatkhau());
+    @PostMapping("/kiemtradangnhap")
+    public ResponseEntity<Map<String, Object>> kiemtradangnhap(@RequestBody khachhang khachhang) {
+        Map<String, Object> response = khachhangService.kiemtradangnhap(khachhang.getTaikhoan(), khachhang.getMatkhau());
         return ResponseEntity.ok(response);
-    }
-    @GetMapping("/test")
-    public String test() {
-        return "Test thành công";
     }
 }
