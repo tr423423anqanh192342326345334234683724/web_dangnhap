@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { DangkyComponent } from './dangky/dangky.component';
-import { KetquaComponent } from './ketqua/ketqua.component';
-import { ThongtinComponent } from './thongtin/thongtin.component';
-
+import { DangnhapComponent } from './web_login/dangnhap/dangnhap.component';
+import { DangkyComponent } from './web_login/dangky/dangky.component';
+import { ThongtinComponent } from './web_login/thongtin/thongtin.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'dangnhap', pathMatch: 'full' },
+  { path: 'dangnhap', component: DangnhapComponent },
   { path: 'dangky', component: DangkyComponent },
-  { path: 'ketqua', component: KetquaComponent },
   { path: 'thongtin', component: ThongtinComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  
 })
 export class AppRoutingModule { }

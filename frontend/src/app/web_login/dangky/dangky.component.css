@@ -1,0 +1,76 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #b2ebf2;
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.login-box h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  color: #444;
+}
+
+.user-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.user-box input {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid #444;
+  outline: none;
+  background: transparent;
+}
+
+.user-box input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+.user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #444;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+  top: -18px;
+  left: 0;
+  color: #0288d1;
+  font-size: 11px;
+}
+
+button {
+  background: #0288d1;
+  border: none;
+  padding: 8px 18px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #0277bd;
+}

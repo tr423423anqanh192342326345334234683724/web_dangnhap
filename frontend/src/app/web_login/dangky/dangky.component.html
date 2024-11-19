@@ -1,0 +1,13 @@
+<div class="parent">
+  <div class="login-box">
+  <h1>Đăng ký</h1>
+  <form (ngSubmit)="kiemtradangky()">
+    <div class="user-box">
+      <input type="text" name="username" placeholder="Tên đăng nhập" required [(ngModel)]="username">
+      <input type="password" name="password" placeholder="Mật khẩu" required [(ngModel)]="password">
+      <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" required [(ngModel)]="confirmPassword">
+      <input type="email" name="email" placeholder="Email" required [(ngModel)]="email">
+      <button type="submit">Đăng ký</button>
+    </div>
+  </form>
+</div>
