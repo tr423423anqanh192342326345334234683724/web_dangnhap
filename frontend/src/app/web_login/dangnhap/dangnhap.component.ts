@@ -22,6 +22,7 @@ export class DangnhapComponent implements OnInit {
       .subscribe((response: any) => {
         if (response.message === "Đăng nhập thành công!") {
           alert("Đăng nhập thành công!");
+          localStorage.setItem('userId', response.userId);
           this.router.navigate(['/thongtin']);
         } else {
           alert(response.message);

@@ -4,13 +4,13 @@
     <form (ngSubmit)="kiemtradangky()">
       <div class="user-box">
         <label for="username">Tên đăng nhập:</label>
-        <input type="text" name="username" id="username" placeholder="Tên đăng nhập" required [(ngModel)]="username">
+        <input type="text" name="username" id="username" placeholder="Tên đăng nhập" required [(ngModel)]="taiKhoan">
 
         <label for="password">Mật khẩu:</label>
-        <input type="password" name="password" id="password" placeholder="Mật khẩu" required [(ngModel)]="password">
+        <input type="password" name="password" id="password" placeholder="Mật khẩu" required [(ngModel)]="matKhau">
 
         <label for="confirmPassword">Xác nhận mật khẩu:</label>
-        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" required [(ngModel)]="confirmPassword">
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" required [(ngModel)]="xacNhanMatKhau">
 
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" placeholder="Email" required [(ngModel)]="email">
@@ -19,6 +19,10 @@
 
         <button type="submit">Đăng ký</button>
       </div>
+
     </form>
+    <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+      {{ errorMessage }}
+    </div>
   </div>
 </div>

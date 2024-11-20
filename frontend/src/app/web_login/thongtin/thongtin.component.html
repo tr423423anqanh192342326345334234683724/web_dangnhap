@@ -1,11 +1,17 @@
-<div>
+<div *ngIf="khachhang">
     <table>
         <tr>
-            <td>Tài khoản</td>
-            <td>Mật khẩu</td>
-            <td>Email</td>
+            <td>Tài khoản:</td>
+            <td>{{ khachhang.taiKhoan }}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{ khachhang.email }}</td>
+        </tr>
+        <tr>
+            <td>Trạng thái:</td>
+            <td>{{ khachhang.active ? 'Đã kích hoạt' : 'Chưa kích hoạt' }}</td>
         </tr>
     </table>
-    <button><a href="/dangnhap">Đăng nhập</a></button>
-    
+    <button><a href="/dangnhap">Đăng xuất</a></button>
 </div>

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/api/khachhangs")
 
@@ -26,27 +25,43 @@ public class khachhangController {
     @Autowired
     private khachhangRepository khachhangRepository;
 
-
     @GetMapping("/kiemtradangnhap")
     public ResponseEntity<Map<String, String>> kiemTraDangNhap(@RequestParam("taikhoan") String taiKhoan, @RequestParam("matkhau") String matKhau) {
         boolean isAuthenticated = khachhangService.kiemTraDangNhap(taiKhoan, matKhau);
         Map<String, String> response = new HashMap<>();
         if (isAuthenticated) {
             response.put("message", "Đăng nhập thành công!");
+            response.put("userId", String.valueOf(khachhangService.layIdKhachHang(taiKhoan)));
             return ResponseEntity.ok(response);
         } else {
             response.put("message", "Sai tài khoản hoặc mật khẩu!");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
+
     @PostMapping("/dangky")
-    public ResponseEntity<?> dangKy(@RequestBody khachhang khachhang) {
+    public ResponseEntity<Map<String, String>> dangKy(@RequestBody khachhang khachhang) {
+        Map<String, String> response = new HashMap<>();
         try {
+            Optional<khachhang> existingKhachhangByTaiKhoan = khachhangRepository.findByTaiKhoan(khachhang.getTaiKhoan());
+            if (existingKhachhangByTaiKhoan.isPresent()) {
+                response.put("error", "Tài khoản đã tồn tại!");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+            }
+
+            Optional<khachhang> existingKhachhangByEmail = khachhangRepository.findByEmail(khachhang.getEmail());
+            if (existingKhachhangByEmail.isPresent()) {
+                response.put("error", "Email đã tồn tại!");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+            }
+
             khachhangService.kiemTraDangKy(khachhang);
-            return ResponseEntity.ok("Đăng ký thành công!");
+            response.put("message", "Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản trước khi đăng nhập!");
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Đăng ký thất bại!");
+            response.put("error", "Đăng ký thất bại!");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
@@ -58,6 +73,14 @@ public class khachhangController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/thongtinkhachhang")
+    public ResponseEntity<?> layThongTinKhachHang(@RequestParam("id") long id) {
+        khachhang khachhang = khachhangService.thongtincuanguoidangnhap(id);
+        if (khachhang != null) {
+            return ResponseEntity.ok(khachhang);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy khách hàng!");
+        }
+    }
 
-    
 }

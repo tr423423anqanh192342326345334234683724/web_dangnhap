@@ -10,47 +10,51 @@ import { Router } from '@angular/router';
 export class DangkyComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
-  username: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+  taiKhoan: string = '';
+  matKhau: string = '';
+  xacNhanMatKhau: string = '';
   email: string = '';
-  xacnhanemail: boolean = false;
+  errorMessage: string = '';
 
-  // Kiểm tra định dạng email hợp lệ
   kiemTraEmail(email: string): boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
   }
 
-  // Kiểm tra đăng ký
   kiemtradangky() {
-    // Kiểm tra mật khẩu có khớp không
-    if (this.password !== this.confirmPassword) {
-      alert('Mật khẩu không khớp!');
+    if (this.matKhau !== this.xacNhanMatKhau) {
+      this.errorMessage = 'Mật khẩu không khớp!';
       return;
     }
 
-    // Kiểm tra email hợp lệ
     if (!this.kiemTraEmail(this.email)) {
-      alert('Email không hợp lệ!');
+      this.errorMessage = 'Email không hợp lệ!';
       return;
     }
 
     const khachhang = {
-      taiKhoan: this.username,
-      matKhau: this.password,
-      email: this.email,
+      taiKhoan: this.taiKhoan,
+      matKhau: this.matKhau,
+      email: this.email
     };
 
-    // Gửi request đăng ký đến API
-    this.http.post('http://localhost:8080/api/khachhangs/dangky', khachhang, { headers: { 'Content-Type': 'application/json' } })
-      .subscribe((response: any) => {
-        if(response.message === "Đăng ký thành công!") {
-          alert("Đăng ký thành công!");
-          this.router.navigate(['/dangnhap']);
-        } else {
-          alert(response.message);
+    this.http.post('http://localhost:8080/api/khachhangs/dangky', khachhang)
+      .subscribe(
+        (response: any) => {
+          console.log('Phản hồi:', response);
+          if (response.message) {
+            alert(response.message);
+            this.router.navigate(['/dangnhap']);
+          }
+        },
+        error => {
+          console.error('Lỗi:', error);
+          if (error.error && error.error.error) {
+            this.errorMessage = error.error.error;
+          } else {
+            this.errorMessage = 'Có lỗi xảy ra, vui lòng thử lại!';
+          }
         }
-      });
+      );
   }
 }
