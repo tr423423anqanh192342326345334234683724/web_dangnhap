@@ -19,8 +19,12 @@ public class khachhangService {
     public boolean kiemTraDangNhap(String taiKhoan, String matKhau) {
         Optional<khachhang> kh = khachhangRepository.findByTaiKhoan(taiKhoan);
         if (kh.isPresent()) {
+            khachhang khachhang = kh.get();
+            if (!khachhang.getActive()) {
+                throw new IllegalStateException("Tài khoản chưa được xác minh email!");
+            }
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            return encoder.matches(matKhau, kh.get().getMatKhau());
+            return encoder.matches(matKhau, khachhang.getMatKhau());
         }
         return false;
     }
@@ -67,5 +71,9 @@ public class khachhangService {
     public long layIdKhachHang(String taiKhoan) {
         Optional<khachhang> kh = khachhangRepository.findByTaiKhoan(taiKhoan);
         return kh.map(khachhang -> khachhang.getId()).orElse(0L);
+    }
+    public boolean kiemTraTrangThaiTaiKhoan(String taiKhoan) {
+        Optional<khachhang> kh = khachhangRepository.findByTaiKhoan(taiKhoan);
+        return kh.map(khachhang -> khachhang.getActive()).orElse(false);
     }
 }

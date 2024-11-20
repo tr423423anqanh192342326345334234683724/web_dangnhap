@@ -17,8 +17,9 @@ export class DangnhapComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  kiemtradangnhap(){
-    this.http.get(`http://localhost:8080/api/khachhangs/kiemtradangnhap?taikhoan=${this.taikhoan}&matkhau=${this.matkhau}`)
+  kiemtradangnhap() {
+    const credentials = { taikhoan: this.taikhoan, matkhau: this.matkhau };
+    this.http.post('http://localhost:8080/api/khachhangs/kiemtradangnhap', credentials)
       .subscribe((response: any) => {
         if (response.message === "Đăng nhập thành công!") {
           alert("Đăng nhập thành công!");
@@ -29,7 +30,7 @@ export class DangnhapComponent implements OnInit {
         }
       }, error => {
         console.log('Lỗi khi kết nối đến server:', error);
-        alert("Sai tài khoản hoặc mật khẩu!");
+        alert(error.error.message || "Sai tài khoản hoặc mật khẩu!");
       });
   }
 

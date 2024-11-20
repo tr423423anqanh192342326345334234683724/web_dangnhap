@@ -25,17 +25,24 @@ public class khachhangController {
     @Autowired
     private khachhangRepository khachhangRepository;
 
-    @GetMapping("/kiemtradangnhap")
-    public ResponseEntity<Map<String, String>> kiemTraDangNhap(@RequestParam("taikhoan") String taiKhoan, @RequestParam("matkhau") String matKhau) {
-        boolean isAuthenticated = khachhangService.kiemTraDangNhap(taiKhoan, matKhau);
+    @PostMapping("/kiemtradangnhap")
+    public ResponseEntity<Map<String, String>> kiemTraDangNhap(@RequestBody Map<String, String> credentials) {
+        String taiKhoan = credentials.get("taikhoan");
+        String matKhau = credentials.get("matkhau");
         Map<String, String> response = new HashMap<>();
-        if (isAuthenticated) {
-            response.put("message", "Đăng nhập thành công!");
-            response.put("userId", String.valueOf(khachhangService.layIdKhachHang(taiKhoan)));
-            return ResponseEntity.ok(response);
-        } else {
-            response.put("message", "Sai tài khoản hoặc mật khẩu!");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        try {
+            boolean isAuthenticated = khachhangService.kiemTraDangNhap(taiKhoan, matKhau);
+            if (isAuthenticated) {
+                response.put("message", "Đăng nhập thành công!");
+                response.put("userId", String.valueOf(khachhangService.layIdKhachHang(taiKhoan)));
+                return ResponseEntity.ok(response);
+            } else {
+                response.put("message", "Sai tài khoản hoặc mật khẩu!");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            }
+        } catch (IllegalStateException e) {
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
         }
     }
 

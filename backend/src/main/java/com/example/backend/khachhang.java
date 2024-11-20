@@ -6,8 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
-import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "khachhang")
 public class khachhang {
@@ -58,7 +56,7 @@ public class khachhang {
         this.email = email;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 
