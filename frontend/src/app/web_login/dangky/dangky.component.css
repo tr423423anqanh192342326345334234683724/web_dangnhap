@@ -2,75 +2,58 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  background-color: #b2ebf2;
+  height: 100vh;
+  background-color: #f0f0f0;
 }
 
 .login-box {
-  background: #ffffff;
-  padding: 30px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
   text-align: center;
 }
 
 .login-box h1 {
-  margin: 0 0 15px;
-  padding: 0;
-  color: #444;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
 }
 
 .user-box {
-  position: relative;
   margin-bottom: 20px;
 }
 
-.user-box input {
+.user-box input[type="text"],
+.user-box input[type="password"],
+.user-box input[type="email"] {
   width: 100%;
-  padding: 8px 0;
-  font-size: 14px;
-  color: #444;
-  margin-bottom: 20px;
-  border: none;
-  border-bottom: 1px solid #444;
-  outline: none;
-  background: transparent;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .user-box input[type="checkbox"] {
-  width: auto;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .user-box label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 8px 0;
   font-size: 14px;
-  color: #444;
-  pointer-events: none;
-  transition: 0.4s;
+  color: #666;
 }
 
-.user-box input:focus ~ label,
-.user-box input:valid ~ label {
-  top: -18px;
-  left: 0;
-  color: #0288d1;
-  font-size: 11px;
-}
-
-button {
-  background: #0288d1;
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
   border: none;
-  padding: 8px 18px;
-  color: #fff;
+  border-radius: 5px;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.2s;
+  font-size: 16px;
 }
 
-button:hover {
-  background: #0277bd;
+button[type="submit"]:hover {
+  background-color: #45a049;
 }

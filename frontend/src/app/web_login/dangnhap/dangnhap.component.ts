@@ -18,23 +18,18 @@ export class DangnhapComponent implements OnInit {
   }
 
   kiemtradangnhap(){
-    console.log('Sending:', {
-      taikhoan: this.taikhoan,
-      matkhau: this.matkhau
-    });
-    this.http.post('http://localhost:8080/api/khachhangs/kiemtradangnhap', {
-      taikhoan: this.taikhoan,
-      matkhau: this.matkhau
-    }).subscribe((response: any) => {
-      if (response && response.success) {
-        console.log(response.message);
-        this.router.navigate(['/thongtin']);
-      } else {
-        console.log(response.message);
-      }
-    }, error => {
-      console.log('Lỗi khi kết nối đến server:', error);
-    });
+    this.http.get(`http://localhost:8080/api/khachhangs/kiemtradangnhap?taikhoan=${this.taikhoan}&matkhau=${this.matkhau}`)
+      .subscribe((response: any) => {
+        if (response.message === "Đăng nhập thành công!") {
+          alert("Đăng nhập thành công!");
+          this.router.navigate(['/thongtin']);
+        } else {
+          alert(response.message);
+        }
+      }, error => {
+        console.log('Lỗi khi kết nối đến server:', error);
+        alert("Sai tài khoản hoặc mật khẩu!");
+      });
   }
 
 }

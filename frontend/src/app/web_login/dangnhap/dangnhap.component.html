@@ -1,13 +1,13 @@
 <div class="parent">
   <div class="login-box">
       <h2>Đăng nhập</h2>
-      <form (ngSubmit)="kiemtradangnhap()">
+      <form (ngSubmit)="kiemtradangnhap()" method="post">
     <div class="user-box">
-      <input type="text" name="username" [(ngModel)]="taikhoan" required>
+      <input type="text" name="taikhoan" [(ngModel)]="taikhoan" required>
       <label>Tài khoản</label>
     </div>
     <div class="user-box">
-      <input type="password" name="password" [(ngModel)]="matkhau" required>
+      <input type="password" name="matkhau" [(ngModel)]="matkhau" required>
       <label>Mật khẩu</label>
       <button type="submit">Đăng nhập</button>
       <br>

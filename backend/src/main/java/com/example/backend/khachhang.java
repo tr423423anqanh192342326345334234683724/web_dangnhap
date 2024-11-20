@@ -1,55 +1,53 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.backend;
-import jakarta.persistence.*;
 
-/**
- *
- * @author Administrator
- */
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "khachhang")
 public class khachhang {
-    @Id  // Đánh dấu trường id là khóa chính
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "taikhoan")  
-    private String taikhoan;
+    @Column(name = "taikhoan", nullable = false, unique = true)
+    private String taiKhoan;
 
-    @Column(name = "matkhau") 
-    private String matkhau;
+    @Column(name = "matkhau", nullable = false)
+    private String matKhau;
 
-    @Column(name = "email")  
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "active")
+    @Column(name = "active", nullable = false)
     private boolean active = false;
+
+    @Column(name = "activationtoken", nullable = true)
+    private String activationtoken;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getTaiKhoan() {
+        return taiKhoan;
     }
 
-    public String getTaikhoan() {
-        return taikhoan;
+    public void setTaiKhoan(String taiKhoan) {
+        this.taiKhoan = taiKhoan;
     }
 
-    public void setTaikhoan(String taikhoan) {
-        this.taikhoan = taikhoan;
+    public String getMatKhau() {
+        return matKhau;
     }
 
-    public String getMatkhau() {
-        return matkhau;
-    }
-
-    public void setMatkhau(String matkhau) {
-        this.matkhau = matkhau;
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
 
     public String getEmail() {
@@ -67,7 +65,15 @@ public class khachhang {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
-    
+
+    public String getActivationToken() {
+        return activationtoken;
+    }
+
+    public void setActivationToken(String activationtoken) {
+        this.activationtoken = activationtoken;
+    }
 }
+
+
 
