@@ -8,17 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./dangky.component.css']
 })
 export class DangkyComponent {
-  constructor(private http: HttpClient, private router: Router) {}
-
   taiKhoan: string = '';
   matKhau: string = '';
   xacNhanMatKhau: string = '';
   email: string = '';
   errorMessage: string = '';
+  showPassword: boolean = false;
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   kiemTraEmail(email: string): boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   kiemtradangky() {

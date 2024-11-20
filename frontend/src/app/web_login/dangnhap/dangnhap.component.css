@@ -7,65 +7,80 @@
 }
 
 .login-box {
-  background: #fff;
+  background-color: #fff;
   padding: 40px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
   text-align: center;
 }
 
 .login-box h2 {
-  margin: 0 0 20px;
-  padding: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
   color: #333;
 }
 
 .user-box {
+  margin-bottom: 20px;
   position: relative;
-  margin-bottom: 30px;
 }
 
-.user-box input {
+.user-box input[type="text"],
+.user-box input[type="password"] {
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #333;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   outline: none;
-  background: transparent;
+  transition: border-color 0.3s;
+}
+
+.user-box input[type="text"]:focus,
+.user-box input[type="password"]:focus {
+  border-color: #4CAF50;
 }
 
 .user-box label {
   position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #333;
+  top: 10px;
+  left: 10px;
+  font-size: 14px;
+  color: #666;
   pointer-events: none;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
-.user-box input:focus ~ label,
-.user-box input:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #03a9f4;
+.user-box input:focus + label,
+.user-box input:valid + label {
+  top: -10px;
+  left: 10px;
   font-size: 12px;
+  color: #4CAF50;
 }
 
-button {
-  background: #03a9f4;
-  border: none;
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
   padding: 10px 20px;
-  color: #fff;
-  cursor: pointer;
+  border: none;
   border-radius: 5px;
-  transition: background 0.3s;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background: #0288d1;
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: underline;
 }
