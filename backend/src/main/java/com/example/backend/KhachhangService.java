@@ -72,8 +72,4 @@ public class khachhangService {
         Optional<khachhang> kh = khachhangRepository.findByTaiKhoan(taiKhoan);
         return kh.map(khachhang -> khachhang.getId()).orElse(0L);
     }
-    public boolean kiemTraTrangThaiTaiKhoan(String taiKhoan) {
-        Optional<khachhang> kh = khachhangRepository.findByTaiKhoan(taiKhoan);
-        return kh.map(khachhang -> khachhang.getActive()).orElse(false);
-    }
 }
